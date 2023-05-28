@@ -21,16 +21,16 @@ export class ShareService {
 GetAllProduct():Observable<Product[]>{
   return this.http.get<Product[]>(this.APIUrl+'/api/Home')
 }
-readonly apiurl="https://localhost:44339/api/Prouduct/SaveProduct"
+readonly apiurl="https://localhost:7275/api/Admin/AddProduct"
 Addproduct(val:any){
   return this.http.post(this.apiurl,val);
 }
 
-UpdateProduct(val:any){
-  return this.http.put<Product[]>(this.APIUrl+'/api/Prouduct/UpdateProduct',val);
+UpdateProduct(id:any, val: any) {
+  return this.http.put<Product[]>(`${this.APIUrl}/api/Admin/UpdateProduct?id=${id}`, val);
 }
-DeleteProduct(id:number){
-  return this.http.delete<Product[]>(this.APIUrl+'/api/Prouduct/DeleteProduct?ProductId='+id);
+DeleteProduct(id: number): Observable<any> {
+  return this.http.delete<any>(`${this.APIUrl}/api/Admin/${id}`);
 }
 GetProduct(val:any){
   return this.http.post(this.APIUrl+'api/Prouduct/GetProduct?ProductId=',val);

@@ -15,19 +15,19 @@ export class EditProductComponent implements OnInit {
   public products:Product[];
   ProductForm = new FormGroup({
     //productId: new FormControl(''),
-    category:new FormControl('',Validators.required),
-    productName : new FormControl('', Validators.required),
+    quantity:new FormControl('',Validators.required),
+    prName : new FormControl('', Validators.required),
     price : new FormControl('',Validators.required),
     description:new FormControl('',Validators.required),
-    productImage : new FormControl('',Validators.required) 
+   // productImage : new FormControl('',Validators.required) 
   });
   submitted=false;
 
-get category(){
-  return this.ProductForm.get('category');
+get quantity(){
+  return this.ProductForm.get('quantity');
 }
-  get productName() {
-    return this.ProductForm.get('productName');
+  get prName() {
+    return this.ProductForm.get('prName');
   }
   get price() {
     return this.ProductForm.get('price');

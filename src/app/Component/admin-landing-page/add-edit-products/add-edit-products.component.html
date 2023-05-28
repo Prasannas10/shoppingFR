@@ -8,27 +8,27 @@
                 <form [formGroup]="ProductForm" (ngSubmit)="EditProduct()">
 
                     <div class="form-group">
-                        <div *ngIf="productId?.invalid &&  productId?.touched">
+                        <div *ngIf="prID?.invalid &&  prID?.touched">
                             <span>ProductId is required.</span></div>
-                        <input formControlName="productId" type="number" id="productId" class="form-control form-control-lg" placeholder="Enter a productId" />
+                        <input formControlName="prID" type="number" id="prID" class="form-control form-control-lg" placeholder="Enter a productId" />
                         <label class="form-label" for="form3Example3"></label>
 
                     </div>
 
 
                     <div class="form-group">
-                        <div *ngIf="category?.touched && category?.invalid">
-                            <span>Category is required.</span></div>
-                        <input formControlName="category" type="text" id="category" class="form-control form-control-lg" placeholder="Category" />
+                        <div *ngIf="quantity?.touched &&  quantity?.invalid">
+                            <span> quantity is required.</span></div>
+                        <input formControlName="quantity" type="text" id=" quantity" class="form-control form-control-lg" placeholder="quantity" />
                         <label class="form-label" for="form3Example3"></label>
 
                     </div>
 
 
                     <div class="form-group">
-                        <div *ngIf="productName?.invalid &&  productName?.touched">
+                        <div *ngIf="prName?.invalid &&  prName?.touched">
                             <span>ProductName is required.</span></div>
-                        <input formControlName="productName" type="text" id="productName" class="form-control form-control-lg" placeholder="Enter a productName" />
+                        <input formControlName="prName" type="text" id="prName" class="form-control form-control-lg" placeholder="Enter a productName" />
                         <label class="form-label" for="form3Example3"></label>
 
                     </div>
@@ -51,14 +51,14 @@
 
                     </div>
 
-
+<!-- 
                     <div class="form-group ">
                         <div *ngIf="productImage?.touched && productImage?.invalid">
                             <span>ProductImage is required.</span></div>
                         <input formControlName="productImage" type="text" id="productImage" class="form-control form-control-lg" placeholder="Enter productImage link" />
                         <label class="form-label" for="form3Example4"></label>
 
-                    </div>
+                    </div> -->
 
 
 

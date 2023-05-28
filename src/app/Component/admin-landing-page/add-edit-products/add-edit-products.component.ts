@@ -13,20 +13,20 @@ import { ShareService } from 'src/app/Services/share.service';
 export class AddEditProductsComponent implements OnInit {
   public products:Product[];
    ProductForm = new FormGroup({
-    productId: new FormControl(''),
-    productName: new FormControl(''),
+    prID: new FormControl(''),
+    prName: new FormControl(''),
     price: new FormControl(''),
-    productImage: new FormControl(''),
+   // productImage: new FormControl(''),
     description: new FormControl(''),
-    category: new FormControl('')
+    quantity: new FormControl('')
   });
   
   submitted=false;
-  get productId(){
-    return this.ProductForm.get('productId');
+  get prID(){
+    return this.ProductForm.get('prID');
   }
-  get productName() {
-    return this.ProductForm.get('productName');
+  get prName() {
+    return this.ProductForm.get('prName');
   }
   get price() {
     return this.ProductForm.get('price');
@@ -37,8 +37,8 @@ export class AddEditProductsComponent implements OnInit {
   get description(){
     return this.ProductForm.get('description');
   }
-  get category(){
-    return this.ProductForm.get('category');
+  get quantity(){
+    return this.ProductForm.get('quantity');
   }
   displayStyle = "none";
   constructor( public shared:ShareService,public nav:NavbarServiceService,public fs:FooterService,private router:Router) { }
@@ -49,8 +49,8 @@ export class AddEditProductsComponent implements OnInit {
   }
 
   EditProduct(){
-    
-    this.shared.UpdateProduct(this.ProductForm.value).subscribe((result)=>{
+    const id = (this.ProductForm.value.prID)
+    this.shared.UpdateProduct(id,this.ProductForm.value).subscribe((result)=>{
   
     });
     alert("Product Edited Successfully");
