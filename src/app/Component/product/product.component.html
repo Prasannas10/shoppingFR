@@ -7,12 +7,14 @@
                     <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCLCecgVAMTeEjbxpLvLvA683Vc3XEMEvNcQ&usqp=CAU " style="width: 18rem;height:15rem;" alt="Card image cap">
                     <div class="card-body">
                         <h3 class="card-title"><b>{{products.prName|uppercase}}</b></h3>
-                        <p class="card-text">{{products.price|currency:'INR':'symbol-narrow'}}</p>
-                        <p class="card-text">{{products.description}}</p>
-                        Quantity <input type="number"  id="qty" style="width: 20%;" >
-                        
-                        <a (click)="addToCart(products,1)" class="btn">Add to cart</a>
-
+                        <p class="card-text">{{products.price|currency:'INR':'symbol-narrow'}} </p> 
+                        <p class="card-text">{{products.description}} &nbsp;&nbsp;&nbsp;&nbsp; Availabel Quantity&nbsp;&nbsp; <b>{{products.quantity}}</b></p> 
+                        <!-- Quantity
+                         <input type="number"  id="qty" style="width: 20%;" >
+                        <a (click)="addToCart(products,getQuantity())" class="btn">Add to cart</a> -->
+                        Quantity <input type="number" [id]="'qty-' + i" style="width: 20%;">
+                        <a (click)="addToCart(products, getQuantity(i))" class="btn">Add to cart</a>
+               
                     </div>
                 </div>
             </div>
