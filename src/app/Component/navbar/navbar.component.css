@@ -5,19 +5,21 @@
 
 a {
     margin-top: 10px;
-    color:black;
+    color:white;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     text-align: justify;
     position: relative;
 }
-
+#logout:hover{
+    color:red;
+}
 a:hover {
-    color: beige;
+    color:yellowgreen;
 }
 
 span {
-    color: yellow;
+    color:white;
     font-size: larger;
     font-weight: bold;
     

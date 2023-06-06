@@ -2,7 +2,7 @@ export default interface Cart{
    
     cartId:number ;
     userId:number;
-    productId:number;
+    prID:number;
     productImage:string;
     productName:string;
     quantity:number;

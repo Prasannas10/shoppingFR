@@ -29,11 +29,11 @@ export class ProductComponent implements OnInit {
       console.log(this.products)
     });
   }
-  addToCart(products:Product){
+  addToCart(products:Product, qty:number){
     
-    console.log(products);
+    console.log(products.prName,qty);
     
-      this.service.addToCart(products).subscribe(val=>{
+      this.service.addToCart(products,qty).subscribe(val=>{
         
       });
       alert("Added to Cart!");

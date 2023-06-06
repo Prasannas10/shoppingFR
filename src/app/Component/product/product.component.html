@@ -4,13 +4,14 @@
         <ng-container *ngFor="let products of products async let i = index">
             <div class="col">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{products.productImage}} " style="width: 18rem;height:15rem;" alt="Card image cap">
+                    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCLCecgVAMTeEjbxpLvLvA683Vc3XEMEvNcQ&usqp=CAU " style="width: 18rem;height:15rem;" alt="Card image cap">
                     <div class="card-body">
                         <h3 class="card-title"><b>{{products.prName|uppercase}}</b></h3>
                         <p class="card-text">{{products.price|currency:'INR':'symbol-narrow'}}</p>
                         <p class="card-text">{{products.description}}</p>
-
-                        <a (click)="addToCart(products)" class="btn">Add to cart</a>
+                        Quantity <input type="number"  id="qty" style="width: 20%;" >
+                        
+                        <a (click)="addToCart(products,1)" class="btn">Add to cart</a>
 
                     </div>
                 </div>

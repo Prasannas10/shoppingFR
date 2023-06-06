@@ -29,8 +29,15 @@ export class LoginComponent implements OnInit {
       }
     get f() { return this.LoginForm.controls; }
     
-  constructor( private http:HttpClient ,private nav:NavbarServiceService, private Service:ShareService, private fb:FormBuilder, private Http:HttpClient, private router:Router) { }
-  
+  constructor( private http:HttpClient ,
+      private nav:NavbarServiceService, 
+      private Service:ShareService,
+      private auth: AccountService,
+      private fb:FormBuilder, 
+      private Http:HttpClient,
+      private router:Router) { } 
+
+
     ngOnInit(): void {
     this.nav.show();
     
@@ -38,8 +45,9 @@ export class LoginComponent implements OnInit {
 onSubmit() {
     this.Service.userlogin(this.LoginForm.value).subscribe(
       (res:any) =>{
-        localStorage.setItem('token',res.token);
+       // localStorage.setItem('token',res.token);
         console.log(res.token);
+        this.auth.storeToken(res.token);
         if(this.LoginForm.value.email=='admin2@gmail.com'||this.LoginForm.value.email=='admin3@gmail.com'||this.LoginForm.value.email=='Abhi@gmail.com')
         this.router.navigate(['login/admin']);
         else{

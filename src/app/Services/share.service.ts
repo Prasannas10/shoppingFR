@@ -3,7 +3,7 @@ import { HttpClient ,HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs'; 
 import { UserDetails } from '../Models/UserDetails.model';
 import { Product } from '../Models/Product.model';
-import cart from '../Models/cart.model';
+import  Cart  from '../Models/cart.model';
 import { feedback } from '../Models/feedback.model';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class ShareService {
   public userService =  UserDetails;
   public products :Product[];
   public product:Product;
-  public cart:cart[];
+  public cart:Cart[];
   readonly APIUrl ="https://localhost:7275"
   constructor(private http:HttpClient) { }
 
@@ -40,15 +40,19 @@ GetProduct(val:any){
 UpdateCart(val:any){
   return this.http.put(this.APIUrl+'/api/Cart/UpdateCart',val)
 }
-addToCart(val:any){
-  return this.http.post<cart>(this.APIUrl+'/api/Cart/SaveCart',val);
+addToCart(val:any, qty:number){
+  const payload = {
+    productName: val.prName,
+    quantity: qty
+  };
+  return this.http.post<Cart>(this.APIUrl+'/api/Home/AddToCart',payload);
 }
-GetAllCart():Observable<cart[]>
+GetAllCart():Observable<Cart[]>
 {
-return this.http.get<cart[]>(this.APIUrl+'/api/Cart/GetAllCart')
+return this.http.get<Cart[]>(this.APIUrl+'/api/Cart/GetAllCart')
 }
 DeleteFromCart(id:number)
-{ return this.http.delete<cart[]>(this.APIUrl+'/api/Cart/DeleteCart?CartId='+id)
+{ return this.http.delete<Cart[]>(this.APIUrl+'/api/Cart/DeleteCart?CartId='+id)
 }
 
 //User service
@@ -77,7 +81,7 @@ EmailService(name:any,receiver:any){
 //Order Service
 addOrderDetails(val:any){
   console.log(val);
-  return this.http.post<cart[]>(this.APIUrl+'/api/Order/SaveOrderDetails',val)
+  return this.http.post<Cart[]>(this.APIUrl+'/api/Order/SaveOrderDetails',val)
 }
 
 //Feedback Service

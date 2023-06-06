@@ -2,7 +2,7 @@
     <div class="container-fluid h-custom bg" >
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1r5k5qAE-P0K7tp4MGjcvDv78VUDvdhUVEA&usqp=CAU" class="img-fluid" alt="Sample image" style="width: 650px;height: 200px;">
+                <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1r5k5qAE-P0K7tp4MGjcvDv78VUDvdhUVEA&usqp=CAU" class="img-fluid" alt="Sample image" style="width: 650px;height: 200px;"> -->
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" >
                 <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <button type="button" class="btn btn-lg" type="submit" [disabled]="!LoginForm.valid" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?<a routerLink="/sign-up" class="link-danger">Register</a>
+                        <p class="small fw-bold mt-2 pt-1 mb-0 text-light">Don't have an account?<a routerLink="/sign-up" class="link-danger">Register</a>
                     </div>
                 </form>
             </div>

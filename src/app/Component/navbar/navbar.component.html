@@ -1,4 +1,4 @@
-<nav *ngIf="nav.visible" class="navbar navbar-expand bg-primary text-light">
+<nav *ngIf="nav.visible" class="navbar navbar-expand bg-dark text-light">
     <div class="container">
         <div class="navbar-header nav-item">
 
@@ -18,7 +18,7 @@
                     </li>
                     <li class="nav-item">
 
-                        <a (click)="onLogout()">&nbsp;&nbsp;&nbsp;
+                        <a (click)="onLogout()" id="logout" class="text-light">&nbsp;&nbsp;&nbsp;
                             <mat-icon>power_settings_new</mat-icon>LogOut</a>
                     </li>
                 </ul>

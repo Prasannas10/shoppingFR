@@ -6,7 +6,8 @@
     background:#9ebaee;
 }
 .bg{
-    background-color: #9ebaee;
+    background:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9z-2gZT5WW1eiJmsf2_EYD1_FrpnJdjnaUQ&usqp=CAU");
+    background-size: cover;   
 }
 
 .h-custom {

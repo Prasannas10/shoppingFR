@@ -10,7 +10,7 @@ import { ProductComponent } from './Component/product/product.component';
 import { Router, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShareService } from './Services/share.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './Component/cart/cart.component';
 import {MatIconModule} from '@angular/material/icon';
 import { NavbarComponent } from './Component/navbar/navbar.component';
@@ -29,6 +29,7 @@ import { AddEditProductsComponent } from './Component/admin-landing-page/add-edi
 import { PaymentComponent } from './Component/payment/payment.component';
 import { OrderSuccessfulComponent } from './Component/order-successful/order-successful.component';
 import { AuthGuard } from './Services/auth.guard';
+import { JwtInterceptorInterceptor } from './interceptors/jwt-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,12 @@ import { AuthGuard } from './Services/auth.guard';
     MatIconModule,
     BrowserAnimationsModule
   ],
-  providers: [ShareService ,AuthGuard],//providers: [AuthGuard]
+  providers: [ShareService ,AuthGuard,
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass: JwtInterceptorInterceptor,
+    multi: true
+  }],//providers: [AuthGuard]
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

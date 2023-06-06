@@ -13,7 +13,7 @@
             <th>Price</th>
             <th>Image</th>
             <th>Description</th>
-            <th>Options</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
         
             <td>{{products.prName}}</td>
             <td>{{products.price}}</td>
-            <td><img src="{{products.productImage}}" style="width: 100px;height:100px;" /></td>
+            <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCLCecgVAMTeEjbxpLvLvA683Vc3XEMEvNcQ&usqp=CAU" style="width: 100px;height:100px;" /></td>
             <td>{{products.description}}</td>
             <td><button (click)="delete(products.prID)" style="border:none"><mat-icon>delete_sweep</mat-icon></button></td>
         </tr>

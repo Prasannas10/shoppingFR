@@ -15,5 +15,16 @@ apiurl ='https://localhost:7275/api/Authenticate/login'
     return this.http.post(this.apiurl,usercred)
     
   }
+  storeToken(tokenValue: string){
+    localStorage.setItem('token',tokenValue)
+  }
+
+  getToken(){
+    return localStorage.getItem('token')
+  }
+  isLoggedIn(): boolean{
+    return !!localStorage.getItem('token')
+  }
+
 
 }
