@@ -49,7 +49,7 @@ addToCart(val:any, qty:number){
 }
 GetAllCart():Observable<Cart[]>
 {
-return this.http.get<Cart[]>(this.APIUrl+'/api/Cart/GetAllCart')
+return this.http.get<Cart[]>(this.APIUrl+'/api/Home/BuyNow')
 }
 DeleteFromCart(id:number)
 { return this.http.delete<Cart[]>(this.APIUrl+'/api/Cart/DeleteCart?CartId='+id)
