@@ -19,10 +19,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let ct of Cart">
+<<<<<<< HEAD
                 <td>1</td><!-- <td>{{ct.cartId}}</td> -->
                 <td>1</td><!-- <td>{{ct.prID}}</td> -->
                 <!-- <td>{{ct.productName}}</td>  -->
                  <td>{{ct.products}}</td>
+=======
+                <td>{{ct.cartId}}</td>
+                <td>{{ct.prID}}</td>
+                <td>{{ct.prName}}</td>
+>>>>>>> 0b5c865143d9ba4157dde23d97175e8061cd1eae
                 <td> <img [src]="ct.productImage" width="50" height="50"> </td>
                 <td>
                     <mat-icon (click)="decrementQuantity(ct.cartId)">remove_circle</mat-icon>
@@ -38,11 +44,18 @@
                         </div>
                     </popup-edit> -->
                 </td>
+<<<<<<< HEAD
                 <!-- <td>{{ct.price| currency :'INR'}}</td> -->
                <td>{{ct.totalAmount}}</td>
                 <td>{{ct.price*ct.quantity| currency :'INR'}}</td>
+=======
+                <td>{{ct.price| currency :'INR'}}</td>
+                <!-- <td>{{ct.price*ct.quantity| currency :'INR'}}</td> -->
+                <td>{{ct.amount| currency :'INR'}}</td>
+
+>>>>>>> 0b5c865143d9ba4157dde23d97175e8061cd1eae
                 <button (click)="Editform"><mat-icon>edit</mat-icon></button>
-                <button (click)="DeleteCart(ct.cartId)"><mat-icon>delete_sweep</mat-icon></button>
+                <button (click)="DeleteCart(ct.prName)"><mat-icon>delete_sweep</mat-icon></button>
 
             </tr>
             <tr>
