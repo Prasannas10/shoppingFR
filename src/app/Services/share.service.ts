@@ -37,8 +37,12 @@ GetProduct(val:any){
 }
 
 //Cart Service
-UpdateCart(val:any){
-  return this.http.put(this.APIUrl+'/api/Cart/UpdateCart',val)
+UpdateCart(qty:number, prN: any){
+  console.log(qty,prN)
+  return this.http.put<Product[]>(`${this.APIUrl}/api/Home/UpdateCart?id=${qty}`, prN);
+
+  // return this.http.put(this.APIUrl+'/api/Home/UpdateCart',qty,prN)
+ 
 }
 addToCart(val:any, qty:number){
   const payload = {

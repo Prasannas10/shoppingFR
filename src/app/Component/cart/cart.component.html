@@ -6,7 +6,7 @@
       <li *ngFor="let product of products">{{ product.productName }}</li>
     </ul>
     
-    <h1>Total Amount: {{ totalAmount | currency: 'INR' }}</h1>
+    <h1>Total Amount: {{grandTotal() | currency :'INR'}}</h1>
     <table class="table table-striped" aria-labelledby="tablelabel">
         <thead class="thead-dark">
             <th scope="col">Cart Id</th>
@@ -19,21 +19,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let ct of Cart">
-<<<<<<< HEAD
-                <td>1</td><!-- <td>{{ct.cartId}}</td> -->
-                <td>1</td><!-- <td>{{ct.prID}}</td> -->
-                <!-- <td>{{ct.productName}}</td>  -->
-                 <td>{{ct.products}}</td>
-=======
                 <td>{{ct.cartId}}</td>
                 <td>{{ct.prID}}</td>
                 <td>{{ct.prName}}</td>
->>>>>>> 0b5c865143d9ba4157dde23d97175e8061cd1eae
-                <td> <img [src]="ct.productImage" width="50" height="50"> </td>
+                <td> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCLCecgVAMTeEjbxpLvLvA683Vc3XEMEvNcQ&usqp=CAU " width="50" height="50"> </td>
                 <td>
-                    <mat-icon (click)="decrementQuantity(ct.cartId)">remove_circle</mat-icon>
+                    <mat-icon (click)="decrementQuantity(ct.prName)">remove_circle</mat-icon>
                     <span>  {{ ct.quantity }}  </span>
-                    <mat-icon (click)="incrementQuantity(ct.cartId)">add_circle</mat-icon>
+                    <mat-icon (click)="incrementQuantity(ct.prName)">add_circle</mat-icon>
                     <!-- <popup-edit popup-show='false' popup-save='Editform'>
                         <div class='popup-header'>
                         </div>
@@ -44,17 +37,11 @@
                         </div>
                     </popup-edit> -->
                 </td>
-<<<<<<< HEAD
-                <!-- <td>{{ct.price| currency :'INR'}}</td> -->
-               <td>{{ct.totalAmount}}</td>
-                <td>{{ct.price*ct.quantity| currency :'INR'}}</td>
-=======
                 <td>{{ct.price| currency :'INR'}}</td>
                 <!-- <td>{{ct.price*ct.quantity| currency :'INR'}}</td> -->
                 <td>{{ct.amount| currency :'INR'}}</td>
 
->>>>>>> 0b5c865143d9ba4157dde23d97175e8061cd1eae
-                <button (click)="Editform"><mat-icon>edit</mat-icon></button>
+                <!-- <button (click)="Editform"><mat-icon>edit</mat-icon></button> -->
                 <button (click)="DeleteCart(ct.prName)"><mat-icon>delete_sweep</mat-icon></button>
 
             </tr>

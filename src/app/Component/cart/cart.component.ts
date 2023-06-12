@@ -54,19 +54,22 @@ export class CartComponent implements OnInit {
       location.reload();
     }
 }
-onSubmit() {
-  this.submitted = true;
-  if (this.Editform.invalid) {
-    return;
-}
-this.shared.UpdateCart(this.Editform.value).subscribe((result)=>{
+// onSubmit() {
+//   this.submitted = true;
+//   if (this.Editform.invalid) {
+//     return;
+// }
+// this.shared.UpdateCart(this.Editform.value).subscribe((result)=>{
 
-});
-}
+// });
+// }
 
-   incrementQuantity(cartId:number){
+   incrementQuantity(prName:string){
+    this.shared.UpdateCart(10,prName).subscribe((result)=>{
+      console.log(result);
+    });
     this.Cart = this.Cart.map((Cart:Cart) => {
-      if (Cart.cartId === cartId) {
+      if (Cart.prName === prName) {
         return {
           ...Cart,
           quantity: Cart.quantity + 1, 
@@ -75,10 +78,10 @@ this.shared.UpdateCart(this.Editform.value).subscribe((result)=>{
       return Cart;
     });
   }
-
-  decrementQuantity(cartId:number){
+ 
+  decrementQuantity(prName:string){
     this.Cart = this.Cart.map((Cart:Cart) => {
-      if (Cart.cartId === cartId) {
+      if (Cart.prName === prName) {
         return {
           ...Cart,
          quantity: Cart.quantity > 1 ? Cart.quantity - 1 : 1
