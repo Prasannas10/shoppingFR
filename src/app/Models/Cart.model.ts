@@ -4,7 +4,8 @@ export default interface Cart{
     userId:number;
     prID:number;
     productImage:string;
-    productName:string;
+    prName:string;
     quantity:number;
     price:number;
+    amount:number;
 }

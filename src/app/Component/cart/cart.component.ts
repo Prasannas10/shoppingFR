@@ -42,9 +42,9 @@ export class CartComponent implements OnInit {
   });
 
   }
-  DeleteCart(id:number){
+  DeleteCart(prName:string){
     if(confirm('Are you sure?')){
-      this.shared.DeleteFromCart(id).subscribe(data=>{
+      this.shared.DeleteFromCart(prName).subscribe(data=>{
         console.log(data);
       });
       location.reload();
@@ -86,7 +86,8 @@ this.shared.UpdateCart(this.Editform.value).subscribe((result)=>{
   public grandTotal():number{
     let total : number = 0;
     for(let cart of this.Cart){
-      total+= cart.quantity* cart.price;
+     // total+= cart.quantity* cart.price;
+     total+=cart.amount;
     }
     return total;
   }

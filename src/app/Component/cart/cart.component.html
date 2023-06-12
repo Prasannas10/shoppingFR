@@ -16,7 +16,7 @@
             <tr *ngFor="let ct of Cart">
                 <td>{{ct.cartId}}</td>
                 <td>{{ct.prID}}</td>
-                <td>{{ct.productName}}</td>
+                <td>{{ct.prName}}</td>
                 <td> <img [src]="ct.productImage" width="50" height="50"> </td>
                 <td>
                     <mat-icon (click)="decrementQuantity(ct.cartId)">remove_circle</mat-icon>
@@ -33,9 +33,11 @@
                     </popup-edit> -->
                 </td>
                 <td>{{ct.price| currency :'INR'}}</td>
-                <td>{{ct.price*ct.quantity| currency :'INR'}}</td>
+                <!-- <td>{{ct.price*ct.quantity| currency :'INR'}}</td> -->
+                <td>{{ct.amount| currency :'INR'}}</td>
+
                 <button (click)="Editform"><mat-icon>edit</mat-icon></button>
-                <button (click)="DeleteCart(ct.cartId)"><mat-icon>delete_sweep</mat-icon></button>
+                <button (click)="DeleteCart(ct.prName)"><mat-icon>delete_sweep</mat-icon></button>
 
             </tr>
             <tr>
