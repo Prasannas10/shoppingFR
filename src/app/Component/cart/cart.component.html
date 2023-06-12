@@ -1,7 +1,12 @@
 <br><br><br>
 <h1 aria-hidden="true"> Cart Table</h1>
 <div class="container table-responsive py-5">
-
+    <h1>Product Names:</h1>
+    <ul>
+      <li *ngFor="let product of products">{{ product.productName }}</li>
+    </ul>
+    
+    <h1>Total Amount: {{ totalAmount | currency: 'INR' }}</h1>
     <table class="table table-striped" aria-labelledby="tablelabel">
         <thead class="thead-dark">
             <th scope="col">Cart Id</th>
@@ -14,9 +19,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let ct of Cart">
-                <td>{{ct.cartId}}</td>
-                <td>{{ct.prID}}</td>
-                <td>{{ct.productName}}</td>
+                <td>1</td><!-- <td>{{ct.cartId}}</td> -->
+                <td>1</td><!-- <td>{{ct.prID}}</td> -->
+                <!-- <td>{{ct.productName}}</td>  -->
+                 <td>{{ct.products}}</td>
                 <td> <img [src]="ct.productImage" width="50" height="50"> </td>
                 <td>
                     <mat-icon (click)="decrementQuantity(ct.cartId)">remove_circle</mat-icon>
@@ -32,7 +38,8 @@
                         </div>
                     </popup-edit> -->
                 </td>
-                <td>{{ct.price| currency :'INR'}}</td>
+                <!-- <td>{{ct.price| currency :'INR'}}</td> -->
+               <td>{{ct.totalAmount}}</td>
                 <td>{{ct.price*ct.quantity| currency :'INR'}}</td>
                 <button (click)="Editform"><mat-icon>edit</mat-icon></button>
                 <button (click)="DeleteCart(ct.cartId)"><mat-icon>delete_sweep</mat-icon></button>

@@ -23,8 +23,11 @@ export class CartComponent implements OnInit {
   get quantity() {
     return this.Editform.get('quantity');
   }
-  public Cart:Cart[];
-  readonly APIUrl ="https://localhost:44339"
+  public Cart:Cart[]=[];
+  public products: any[] = [];
+  public totalAmount: number = 0;
+
+  readonly APIUrl ="https://localhost:7275"
   constructor(private fs: FooterService, private nav :NavbarServiceService,private shared:ShareService ,public http :HttpClient,private router:Router) { }
 
   ngOnInit(): void {
@@ -36,9 +39,10 @@ export class CartComponent implements OnInit {
   }
   isActive = true;
   refreshCartList(){
-  this.shared.GetAllCart().subscribe(data=>{
+  this.shared.GetAllCart().subscribe(data =>{
+    console.log(data);
     this.Cart=data;
-    console.log(this.Cart)
+    // this.products=data.products;
   });
 
   }

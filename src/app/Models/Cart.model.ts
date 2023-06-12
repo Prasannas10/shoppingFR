@@ -5,6 +5,8 @@ export default interface Cart{
     prID:number;
     productImage:string;
     productName:string;
+    products:string;
     quantity:number;
     price:number;
+    totalAmount: number;
 }
