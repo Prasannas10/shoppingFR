@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Cart from 'src/app/Models/cart.model';
 import { ShareService } from 'src/app/Services/share.service';
@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
   public totalAmount: number = 0;
 
   readonly APIUrl ="https://localhost:7275"
-  constructor(private fs: FooterService, private nav :NavbarServiceService,private shared:ShareService ,public http :HttpClient,private router:Router) { }
+  constructor(private fs: FooterService, private cdr: ChangeDetectorRef, private nav :NavbarServiceService,private shared:ShareService ,public http :HttpClient,private router:Router) { }
 
   ngOnInit(): void {
     this.nav.show();
@@ -64,32 +64,49 @@ export class CartComponent implements OnInit {
 // });
 // }
 
-   incrementQuantity(prName:string){
-    this.shared.UpdateCart(10,prName).subscribe((result)=>{
-      console.log(result);
-    });
-    this.Cart = this.Cart.map((Cart:Cart) => {
-      if (Cart.prName === prName) {
+incrementQuantity(prName: string) {
+  // Update the quantity in your local cart array
+  this.Cart = this.Cart.map((cart: Cart) => {
+    if (cart.prName === prName) {
+      const newQuantity = cart.quantity + 1;
+
+      // Call the shared service to update the cart with the new quantity value
+      this.shared.UpdateCart(newQuantity, prName).subscribe(result => {
+        console.log(result);
+      });
+
+      return {
+        ...cart,
+        quantity: newQuantity,
+      };
+    }
+    return cart;
+  });
+  this.cdr.detectChanges();
+}
+  decrementQuantity(prName: string) {
+    // Update the quantity in your local cart array
+    this.Cart = this.Cart.map((cart: Cart) => {
+      if (cart.prName === prName) {
+        const newQuantity = cart.quantity - 1;
+
+        // Call the shared service to update the cart with the new quantity value
+        this.shared.UpdateCart(newQuantity, prName).subscribe(result => {
+          console.log(result);
+        });
+
         return {
-          ...Cart,
-          quantity: Cart.quantity + 1, 
+          ...cart,
+          quantity: newQuantity,
         };
       }
-      return Cart;
+      return cart;
     });
+    
+    this.cdr.detectChanges();
   }
- 
-  decrementQuantity(prName:string){
-    this.Cart = this.Cart.map((Cart:Cart) => {
-      if (Cart.prName === prName) {
-        return {
-          ...Cart,
-         quantity: Cart.quantity > 1 ? Cart.quantity - 1 : 1
-        };
-      }
-      return Cart;
-    });  
-  }
+
+
   public grandTotal():number{
     let total : number = 0;
     for(let cart of this.Cart){

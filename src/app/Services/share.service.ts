@@ -37,12 +37,12 @@ GetProduct(val:any){
 }
 
 //Cart Service
-UpdateCart(qty:number, prN: any){
+UpdateCart(qty:number, prN: string){
   console.log(qty,prN)
-  return this.http.put<Product[]>(`${this.APIUrl}/api/Home/UpdateCart?id=${qty}`, prN);
-
-  // return this.http.put(this.APIUrl+'/api/Home/UpdateCart',qty,prN)
- 
+  const requestBody = {}; //empty body 
+  
+  return this.http.put<Cart[]>(`${this.APIUrl}/api/Home/UpdateCart?qty=${qty}&prN=${prN}`,requestBody);
+  
 }
 addToCart(val:any, qty:number){
   const payload = {
@@ -94,10 +94,12 @@ GetAllFeedDetails():Observable<feedback[]>
 {
  return this.http.get<feedback[]>(this.APIUrl+'/api/Feedback/GetAllFeedDetails()')
 }
-addFeedDetails(val:any){
-  console.log(val);
-  return this.http.post<feedback>(this.APIUrl+'/api/Feedback/SaveFeedDetails',val)
-}
+
+// Remove
+// addFeedDetails(val:any){
+//   console.log(val);
+//   return this.http.post<feedback>(this.APIUrl+'/api/Feedback/SaveFeedDetails',val)
+// }
 
 }
 

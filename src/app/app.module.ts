@@ -20,7 +20,6 @@ import { AdminLandingPageComponent } from './Component/admin-landing-page/admin-
 import { UserLandingPageComponent } from './Component/user-landing-page/user-landing-page.component';
 import { ErrorComponent } from './Component/error/error.component';
 import { OrderComponent } from './Component/order/order.component';
-import { FeedbackComponent } from './Component/feedback/feedback.component';
 import { AllfeedbacksComponent } from './Component/allfeedbacks/allfeedbacks.component';
 import { ShowProductComponent } from './Component/admin-landing-page/show-product/show-product.component';
 import { AddProductComponent } from './Component/admin-landing-page/add-product/add-product.component';
@@ -45,7 +44,7 @@ import { JwtInterceptorInterceptor } from './interceptors/jwt-interceptor.interc
     UserLandingPageComponent,
     ErrorComponent,
     OrderComponent,
-    FeedbackComponent,
+ 
     AllfeedbacksComponent,
     ShowProductComponent,
     AddProductComponent,
@@ -71,7 +70,6 @@ import { JwtInterceptorInterceptor } from './interceptors/jwt-interceptor.interc
       {path: 'login/user', component:UserLandingPageComponent,canActivate: [AuthGuard]},
       {path: 'login/admin', component:AdminLandingPageComponent,canActivate: [AuthGuard]},
       {path: 'order', component: OrderComponent,canActivate: [AuthGuard]},
-      {path:'feedback',component:FeedbackComponent},
       {path:'allfeedbacks',component:AllfeedbacksComponent},
       {path:'edit-product',component:EditProductComponent,canActivate: [AuthGuard]},
       {path:'show-product',component:ShowProductComponent,canActivate: [AuthGuard]},
