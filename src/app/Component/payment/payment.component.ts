@@ -17,53 +17,99 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  Paymentform=new FormGroup({
+  // shippingForm=new FormGroup({
 
-    FullName:new FormControl('', Validators.required),
-    transactionAmount:new FormControl('',),
-    Cardnumber : new FormControl('',[Validators.required , Validators.minLength(16) , Validators.maxLength(16)]),
-    CardCVV : new FormControl('',[Validators.required , Validators.minLength(3) , Validators.maxLength(3)]),
-    Mode: new FormControl('',),
+  //   Address:new FormControl('', Validators.required),
+   
+  // });
+  // submitted=false;
+  // get Address() {
+  //   return this.shippingForm.get('Address');
+  // }
+  
+
+
+
+  // public payment:Payment[];
+  // readonly APIUrl ="https://localhost:7275"
+  // ///////////////////
+  SignUpform = new FormGroup({
+   
+    username : new FormControl('', Validators.required),
+  
+    address : new FormControl('',Validators.required),
+   
+    email : new FormControl('',[Validators.required , Validators.email]),
+  
+
+    
+    
   });
   submitted=false;
-  get FullName() {
-    return this.Paymentform.get('Fullname');
+ 
+  get username() {
+    return this.SignUpform.get('username');
   }
-  get transactionAmount() {
-    return this.Paymentform.get('TransactionAmount');
+ 
+  get email() {
+    return this.SignUpform.get('email');
   }
-  get Mode() {
-    return this.Paymentform.get('Mode');
+  
+  get address() {
+    return this.SignUpform.get('address');
   }
-  get Cardnumber() {
-    return this.Paymentform.get('Cardnumber');
-  }
-  get CardCVV() {
-    return this.Paymentform.get('CardCVV');
-  }
+  
 
-
-
-  public payment:Payment[];
-  readonly APIUrl ="https://localhost:44339"
   constructor(private shared:ShareService, private nav:NavbarServiceService, private fs:FooterService,private router :Router) { }
 
-  ngOnInit(): void {
-    this.fs.show();
-    this.nav.show();
-  }
+//   ngOnInit(): void {
+//     this.fs.show();
+//     this.nav.show();
+//   }
 
-  onSubmit() {
-    this.submitted = true;
-    if (this.Paymentform.invalid) {
-      return;
-  }
-  this.shared.addUserDetails(this.Paymentform.value).subscribe((result)=>{
+//   onSubmit() {
+//     this.submitted = true;
+   
+//     if (this.shippingForm.invalid) {
+//       return;
+//   }}
+//   submitForm() {
+//     if (this.shippingForm.invalid) {
+//       return;
+//     }
+//     const address = this.shippingForm.value.Address;
+//     this.shared.ShippingDetails(address);
+   
+//   }
+// //   const address = this.shippingForm.get('Address')?.value;
+// //   console.log(address);
+// //   this.shared.ShippingDetails(address);
+// // alert("Order Successful");
+// //   this.shippingForm.reset();
+// // }
   
+ngOnInit(): void {
+  this.nav.show();
+
+  // this.fs.hide();
+}
+
+onSubmit() {
+  this.submitted = true;
+  if (this.SignUpform.invalid) {
+    console.log("invalid form");
+    return;
+}
+
+this.shared.ShippingDetails(this.SignUpform.value.address).subscribe((result:any)=>{
+console.log("Hello from signup");
+console.log(result);
 });
-alert("Payment Successful");
-  this.Paymentform.reset();
+// this.shared.EmailService(this.SignUpform.value.username,this.SignUpform.value.email).subscribe((res)=>{ })
+alert("Order Successful");
+this.SignUpform.reset();
+this.router.navigate(['order-successful']);
 }
-  
 
 }
+

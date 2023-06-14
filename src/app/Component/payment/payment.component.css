@@ -51,7 +51,10 @@ h4 {
     margin-right: 0;
 }
 
-.name {
+.name,
+.contact,
+.address,
+.mail {
     padding: 14px 10px 14px 50px;
     width: 100%;
     background-color: #fcfcfc;
@@ -64,6 +67,9 @@ h4 {
 }
 
 .name:focus,
+.address:focus,
+.contact:focus,
+.mail:focus,
 .dob:focus {
     -webkit-box-shadow: 0 0 2px 1px #7ed32180;
     -moz-box-shadow: 0 0 2px 1px #7ed32180;
@@ -90,7 +96,10 @@ h4 {
     border-right: none;
 }
 
-.name:focus+.icon {
+.name:focus+.icon,
+.address:focus+.icon,
+.contact:focus+.icon,
+.mail:focus+.icon {
     background-color: #2162d3;
     color: #fff;
     border-right: 1px solid #21d3d3;
