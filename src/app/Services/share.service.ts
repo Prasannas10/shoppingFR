@@ -99,11 +99,6 @@ ShippingDetails(val:any){
 
   }
 
-//Feedback Service
-GetAllFeedDetails():Observable<feedback[]>
-{
- return this.http.get<feedback[]>(this.APIUrl+'/api/Feedback/GetAllFeedDetails()')
-}
 
 
 }
