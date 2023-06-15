@@ -82,7 +82,8 @@ incrementQuantity(prName: string) {
     }
     return cart;
   });
-  this.cdr.detectChanges();
+  // this.cdr.detectChanges();
+  location.reload();
 }
   decrementQuantity(prName: string) {
     // Update the quantity in your local cart array
@@ -103,7 +104,8 @@ incrementQuantity(prName: string) {
       return cart;
     });
     
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
+    location.reload();
   }
 
 
