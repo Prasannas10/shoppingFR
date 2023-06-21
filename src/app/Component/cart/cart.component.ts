@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Cart from 'src/app/Models/cart.model';
 import { ShareService } from 'src/app/Services/share.service';
@@ -23,9 +23,12 @@ export class CartComponent implements OnInit {
   get quantity() {
     return this.Editform.get('quantity');
   }
-  public Cart:Cart[];
-  readonly APIUrl ="https://localhost:44339"
-  constructor(private fs: FooterService, private nav :NavbarServiceService,private shared:ShareService ,public http :HttpClient,private router:Router) { }
+  public Cart:Cart[]=[];
+  public products: any[] = [];
+  public totalAmount: number = 0;
+
+  readonly APIUrl ="https://localhost:7275"
+  constructor(private fs: FooterService, private cdr: ChangeDetectorRef, private nav :NavbarServiceService,private shared:ShareService ,public http :HttpClient,private router:Router) { }
 
   ngOnInit(): void {
     this.nav.show();
@@ -36,9 +39,10 @@ export class CartComponent implements OnInit {
   }
   isActive = true;
   refreshCartList(){
-  this.shared.GetAllCart().subscribe(data=>{
+  this.shared.GetAllCart().subscribe(data =>{
+    console.log(data);
     this.Cart=data;
-    console.log(this.Cart)
+    // this.products=data.products;
   });
 
   }
@@ -50,39 +54,61 @@ export class CartComponent implements OnInit {
       location.reload();
     }
 }
-onSubmit() {
-  this.submitted = true;
-  if (this.Editform.invalid) {
-    return;
-}
-this.shared.UpdateCart(this.Editform.value).subscribe((result)=>{
+// onSubmit() {
+//   this.submitted = true;
+//   if (this.Editform.invalid) {
+//     return;
+// }
+// this.shared.UpdateCart(this.Editform.value).subscribe((result)=>{
 
-});
-}
+// });
+// }
 
-   incrementQuantity(cartId:number){
-    this.Cart = this.Cart.map((Cart:Cart) => {
-      if (Cart.cartId === cartId) {
+incrementQuantity(prName: string) {
+  // Update the quantity in your local cart array
+  this.Cart = this.Cart.map((cart: Cart) => {
+    if (cart.prName === prName) {
+      const newQuantity = cart.quantity + 1;
+
+      // Call the shared service to update the cart with the new quantity value
+      this.shared.UpdateCart(newQuantity, prName).subscribe(result => {
+        console.log(result);
+      });
+
+      return {
+        ...cart,
+        quantity: newQuantity,
+      };
+    }
+    return cart;
+  });
+  // this.cdr.detectChanges();
+  location.reload();
+}
+  decrementQuantity(prName: string) {
+    // Update the quantity in your local cart array
+    this.Cart = this.Cart.map((cart: Cart) => {
+      if (cart.prName === prName) {
+        const newQuantity = cart.quantity - 1;
+
+        // Call the shared service to update the cart with the new quantity value
+        this.shared.UpdateCart(newQuantity, prName).subscribe(result => {
+          console.log(result);
+        });
+
         return {
-          ...Cart,
-          quantity: Cart.quantity + 1, 
+          ...cart,
+          quantity: newQuantity,
         };
       }
-      return Cart;
+      return cart;
     });
+    
+    // this.cdr.detectChanges();
+    location.reload();
   }
 
-  decrementQuantity(cartId:number){
-    this.Cart = this.Cart.map((Cart:Cart) => {
-      if (Cart.cartId === cartId) {
-        return {
-          ...Cart,
-         quantity: Cart.quantity > 1 ? Cart.quantity - 1 : 1
-        };
-      }
-      return Cart;
-    });  
-  }
+
   public grandTotal():number{
     let total : number = 0;
     for(let cart of this.Cart){

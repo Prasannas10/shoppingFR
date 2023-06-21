@@ -47,20 +47,23 @@ onSubmit() {
       (res:any) =>{
        // localStorage.setItem('token',res.token);
         console.log(res.token);
+        console.log(res.uRole);
+        
         this.auth.storeToken(res.token);
-        if(this.LoginForm.value.email=='admin2@gmail.com'||this.LoginForm.value.email=='admin3@gmail.com'||this.LoginForm.value.email=='Abhi@gmail.com')
-        this.router.navigate(['login/admin']);
+        if(res.uRole=="Admin")
+        {
+          this.router.navigate(['login/admin']);
+        }
         else{
-          // GetAllUserDetailsbyEmail():Observable<UserDetails[]>{
-          //   return this.http.get<any[]>(this.APIUrl+'api/UserDetails/GetUserbyEmail?EmailId=',this.LoginForm.value.EmailId)
-          //   }
+         
           this.IsLogin=true;
           this.router.navigate(['products']); //login/user
         }
         
       },
       err =>{
-        if(err.status==400)
+        // if(err.status==401)
+        if(err)
         alert("Authentication Failed!! Invalid Credentails");
         else
         console.log(err);

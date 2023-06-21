@@ -36,9 +36,15 @@ GetProduct(val:any){
   return this.http.post(this.APIUrl+'api/Prouduct/GetProduct?ProductId=',val);
 }
 
+
+
 //Cart Service
-UpdateCart(val:any){
-  return this.http.put(this.APIUrl+'/api/Cart/UpdateCart',val)
+UpdateCart(qty:number, prN: string){
+  console.log(qty,prN)
+  const requestBody = {}; //empty body 
+  
+  return this.http.put<Cart[]>(`${this.APIUrl}/api/Home/UpdateCart?qty=${qty}&prN=${prN}`,requestBody);
+  
 }
 addToCart(val:any, qty:number){
   const payload = {
@@ -49,7 +55,8 @@ addToCart(val:any, qty:number){
 }
 GetAllCart():Observable<Cart[]>
 {
-return this.http.get<Cart[]>(this.APIUrl+'/api/Home/BuyNow')
+  
+return this.http.get<Cart[]>(this.APIUrl+'/api/Home/BuyNow');
 }
 DeleteFromCart(prName:string)
 { return this.http.delete<Cart[]>(`${this.APIUrl}/api/Home/DeleteFromCart/${prName}`)
@@ -62,8 +69,9 @@ GetAllUserDetails():Observable<any[]>{
   return this.http.get<any[]>(this.APIUrl+'/api/UserDetails/GetAllUserDetails()')
 }
 addUserDetails(val:any){
+  
   console.log(val);
-  return this.http.post<UserDetails>(this.APIUrl+'/api/Authenticate/User_register',val)
+  return this.http.post<UserDetails>(`${this.APIUrl}/api/Authenticate/User_register`, val)
   }
 userlogin(val:any){
   console.log(val);
@@ -83,16 +91,15 @@ addOrderDetails(val:any){
   console.log(val);
   return this.http.post<Cart[]>(this.APIUrl+'/api/Order/SaveOrderDetails',val)
 }
-
-//Feedback Service
-GetAllFeedDetails():Observable<feedback[]>
-{
- return this.http.get<feedback[]>(this.APIUrl+'/api/Feedback/GetAllFeedDetails()')
-}
-addFeedDetails(val:any){
+ShippingDetails(val:any){
+  const emt = {};
   console.log(val);
-  return this.http.post<feedback>(this.APIUrl+'/api/Feedback/SaveFeedDetails',val)
-}
+  return this.http.post<UserDetails>(`${this.APIUrl}/api/Home/checkout?address=${val}`,emt)
+  // return this.http.put<Cart[]>(`${this.APIUrl}/api/Home/UpdateCart?qty=${qty}&prN=${prN}`,requestBody);
+
+  }
+
+
 
 }
 
